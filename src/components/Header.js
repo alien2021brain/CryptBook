@@ -4,6 +4,8 @@ import Select from '@material-ui/core/Select';
 import { useNavigate } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
+    import { CryptoState } from '../CryptoContext';
+
 const useStyles=makeStyles(()=>({
     title:{
         flex:1,
@@ -23,6 +25,8 @@ const darkTheme = createTheme({
     },
   });
 function Header() {
+    const {currency,setCurrency}=CryptoState();
+    console.log(currency);
     let navigate = useNavigate();
     const classes=useStyles()
   return (
@@ -32,7 +36,7 @@ function Header() {
     <Container>
     <Toolbar>
     <Typography className={classes.title} onClick={()=>navigate("/")} varitent="h6">
-    Crypto Hunter
+    CryptoBook
     </Typography>
 
 
@@ -43,6 +47,8 @@ function Header() {
         height:40,
         marginRight:15,
        } }
+       value={currency}
+       onChange={(e)=>setCurrency(e.target.value)}
       
     >
       <MenuItem value={'USD'}>
